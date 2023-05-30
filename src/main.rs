@@ -35,8 +35,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut wanted_init_time: String = String::new();
     io::stdin().read_line(&mut wanted_init_time)?;
 
-    // wanted_init_time = format!("{}:00", wanted_init_time.trim());
-    let parsed_init_time: Time = parser::parse_time_type(wanted_init_time.trim()).unwrap();
+    let parsed_init_time: Time = match parser::parse_time_type(wanted_init_time.trim()) {
+        Ok(init_time) => init_time,
+        Err(error) => panic!("An error ocurred on parsing the init time: {:?}", error),
+    };
 
     print!("Digite horário final (HH:MM): ");
     io::stdout().flush().unwrap();
@@ -44,8 +46,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut wanted_end_time: String = String::new();
     io::stdin().read_line(&mut wanted_end_time)?;
 
-    // wanted_end_time = format!("{}:00", wanted_end_time.trim());
-    let parsed_end_time: Time = parser::parse_time_type(wanted_end_time.trim()).unwrap();
+    let parsed_end_time: Time = match parser::parse_time_type(wanted_end_time.trim()) {
+        Ok(end_time) => end_time,
+        Err(error) => panic!("An error ocurred on parsing the end time: {:?}", error)
+    };
 
     let path: String = format!(
         "{}{}{}{}.{}",
@@ -68,6 +72,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut valid_contents: Vec<&str> = vec![];
     for info in infos.iter() {
         if info.time >= parsed_init_time && info.time <= parsed_end_time {
+            println!("{}", info.content);
             valid_contents.push(info.content.as_str());
         }
     }

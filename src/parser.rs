@@ -5,7 +5,7 @@ pub fn parse_time_type(time: &str) -> Result<Time, Box<dyn Error>> {
     let mut iterator = time.split(":");
 
     Ok(Time::from_hms(
-        iterator.next().expect("Error parsing hour.").parse::<u8>()?,
+        iterator.next().unwrap_or("00").parse::<u8>()?,
         iterator.next().unwrap_or("00").parse::<u8>()?,
         iterator.next().unwrap_or("00").parse::<u8>()?
     )?)
