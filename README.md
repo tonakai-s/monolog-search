@@ -8,7 +8,7 @@ Porém minha ideia com este pequeno projeto é tornar possível a busca de logs 
 
 ## Pontos de busca
 Os testes atuais realizados foram com base nos logs da empresa cuja qual eu trabalho, então temos o padrão de colocar a data do log no nome do arquivo, sendo esta no formato yyyy-mm-dd, sendo isso utilizado para buscar a data do log desejado.
-Fazendo o parser internamente, foi utilizado o padrão de datetime a seguir:<br>[2023-05-25T00:00:01.688372-03:00] (Também não sei ainda o que é o -03:00)
+Fazendo o parser internamente, foi utilizado o padrão de datetime a seguir:<br>[2023-05-25T00:00:01.688372-03:00].
 
 Planejo permitir definir um format de datetime, e fazer o parse com base nele, porém ainda não sei como fazer isso de uma maneira simplificada.
 
